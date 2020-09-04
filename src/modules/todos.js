@@ -1,13 +1,11 @@
+import { createAction } from 'redux-actions';
+
 const CHANGE_INPUT = "todos/CHANGE_INPUT"; // 인풋 값 변경
 const INSERT = "todos/INSERT"; // 새로운 todo를 등록
 const TOGGLE = "todos/TOGGLE"; // todo를 체크 or 체크 해제
 const REMOVE = "todos/REMOVE"; // todo를 제거
 
-export const changeInput = input => ({
-    type: CHANGE_INPUT,
-    input
-});
-
+export const changeInput = createAction(CHANGE_INPUT, input => input);
 let id = 3;
 
 export const insert = text => ({
