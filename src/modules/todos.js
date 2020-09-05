@@ -1,4 +1,4 @@
-import { handleActions, createAction } from 'redux-actions';
+import { createAction, handleActions } from 'redux-actions';
 
 const CHANGE_INPUT = "todos/CHANGE_INPUT"; // 인풋 값 변경
 const INSERT = "todos/INSERT"; // 새로운 todo를 등록
@@ -12,9 +12,9 @@ export const insert = createAction(INSERT, text => ({
     id: id ++,
     text,
     done: false
-}))
-export const toggle = createAction(TOGGLE, id => id)
-export const remove = createAction(REMOVE, id => id)
+}));
+export const toggle = createAction(TOGGLE, id => id);
+export const remove = createAction(REMOVE, id =>  id);
 
 const initialState = {
     input: "",
@@ -34,18 +34,18 @@ const initialState = {
 
 const todos = handleActions(
     {
-        [CHANGE_INPUT]: (state, { payload : input }) => ({ ...state, input }),
-        [INSERT]: (state, { payload : todo }) => ({
+        [CHANGE_INPUT]: (state, { payload: input }) => ({ ...state, input }),
+        [INSERT]: (state, { payload: todo }) => ({
             ...state,
             todos: state.todos.concat(todo)
         }),
-        [TOGGLE]: (state, { payload : id }) => ({
+        [TOGGLE]: (state, { payload: id }) => ({
             ...state,
-            todos: state.todos.map(todo => 
+            todos: state.todos.map(todo =>
                 todo.id === id ? { ...todo, done : !todo.done } : todo
             )
         }),
-        [REMOVE]: (state, { payload : id }) => ({
+        [REMOVE]: (state, { payload: id }) => ({
             ...state,
             todos: state.todos.filter(todo => todo.id !== id)
         })
